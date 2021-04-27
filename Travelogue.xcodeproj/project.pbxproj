@@ -21,6 +21,8 @@
 		2FCC119C2638AE32004D16D8 /* Trip+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC11982638AE32004D16D8 /* Trip+CoreDataProperties.swift */; };
 		2FCC11A22638AF6A004D16D8 /* TripAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC11A12638AF6A004D16D8 /* TripAddEditViewController.swift */; };
 		2FCC11A52638B2C3004D16D8 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC11A42638B2C3004D16D8 /* LogsViewController.swift */; };
+		2FCC11AA2638BD75004D16D8 /* LogTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC11A92638BD75004D16D8 /* LogTableViewCell.swift */; };
+		2FCC11AD2638C36F004D16D8 /* LogAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCC11AC2638C36F004D16D8 /* LogAddEditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		2FCC11982638AE32004D16D8 /* Trip+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Trip+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2FCC11A12638AF6A004D16D8 /* TripAddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripAddEditViewController.swift; sourceTree = "<group>"; };
 		2FCC11A42638B2C3004D16D8 /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		2FCC11A92638BD75004D16D8 /* LogTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTableViewCell.swift; sourceTree = "<group>"; };
+		2FCC11AC2638C36F004D16D8 /* LogAddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogAddEditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,7 @@
 				2FC6B012262A14BD00C29C95 /* TripsViewController.swift */,
 				2FCC11A12638AF6A004D16D8 /* TripAddEditViewController.swift */,
 				2FCC11A42638B2C3004D16D8 /* LogsViewController.swift */,
+				2FCC11AC2638C36F004D16D8 /* LogAddEditViewController.swift */,
 				2FCC11832638A5A8004D16D8 /* Custom_TableView_Cells */,
 			);
 			path = Controller;
@@ -119,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				2FCC117D2638A544004D16D8 /* TripTableViewCell.swift */,
+				2FCC11A92638BD75004D16D8 /* LogTableViewCell.swift */,
 			);
 			path = Custom_TableView_Cells;
 			sourceTree = "<group>";
@@ -196,9 +202,11 @@
 				2FCC119C2638AE32004D16D8 /* Trip+CoreDataProperties.swift in Sources */,
 				2FC6B013262A14BD00C29C95 /* TripsViewController.swift in Sources */,
 				2FC6B019262A14BD00C29C95 /* Travelogue.xcdatamodeld in Sources */,
+				2FCC11AD2638C36F004D16D8 /* LogAddEditViewController.swift in Sources */,
 				2FC6B00F262A14BD00C29C95 /* AppDelegate.swift in Sources */,
 				2FC6B011262A14BD00C29C95 /* SceneDelegate.swift in Sources */,
 				2FCC11A22638AF6A004D16D8 /* TripAddEditViewController.swift in Sources */,
+				2FCC11AA2638BD75004D16D8 /* LogTableViewCell.swift in Sources */,
 				2FCC11A52638B2C3004D16D8 /* LogsViewController.swift in Sources */,
 				2FCC11992638AE32004D16D8 /* Log+CoreDataClass.swift in Sources */,
 				2FCC119A2638AE32004D16D8 /* Log+CoreDataProperties.swift in Sources */,

@@ -152,8 +152,8 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 if  let index = tripsTableView.indexPathForSelectedRow?.row
                 {
                     let trip = trips[index]
-                    //vC.navBar.title = category.name
-                    //vC.Trip = trip
+                    vC.nav.title = trip.name
+                    vC.trip = trip
                 }
             default:
                 print("Segue Error")
