@@ -42,11 +42,7 @@ class LogAddEditViewController: UIViewController, UITextFieldDelegate, UINavigat
         }
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-        
-    }
-    
+    //save log in core data
     @IBAction func save(_ sender: Any)
     {
         //If safe save
@@ -85,40 +81,50 @@ class LogAddEditViewController: UIViewController, UITextFieldDelegate, UINavigat
         navigationController?.popViewController(animated: true)
     }
     
+    //When folder button is clicked. Choose photo for log
     @IBAction func choosePhoto(_ sender: Any)
     {
+        //verify photo library can be opened.
         guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
         else
         {
             print("can't open photo library")
             return
         }
-
+        
+        //Set the source of the image to be selected to the library.
         imagePicker.sourceType = .photoLibrary
         imagePicker.delegate = self
 
+        //Show the photo library to the user
         present(imagePicker, animated: true)
     }
     
     @IBAction func takePhoto(_ sender: Any)
     {
+        //veriy camera can be opened
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else
         {
             print("camera not supported by this device")
             return
         }
         
+        //Set the source of the image to be from the camera.
         imagePicker.sourceType = .camera
         imagePicker.delegate = self
+        
+        //Show the camera application so user can take photo
         present(imagePicker, animated: true)
     }
     
+    //Hide keyboard on tap outside
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         logNameField.resignFirstResponder()
         logDiscriptionTextView.resignFirstResponder()
     }
     
+    //quit library/camera on cancel
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         defer {
             picker.dismiss(animated: true)
@@ -127,9 +133,11 @@ class LogAddEditViewController: UIViewController, UITextFieldDelegate, UINavigat
         print("did cancel")
     }
     
+    //Got Photo from camera or library
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
             picker.dismiss(animated: true)
             
+            //Set image of the log to the selected or snapped photo
             if let image = info[.originalImage] as? UIImage
             {
                 logImageView.image = image

@@ -24,17 +24,22 @@ class TripAddEditViewController: UIViewController, UITextFieldDelegate{
 
         // Do any additional setup after loading the view.
         tripNameField.delegate = self
+        
+        //Trip Set
         if let safeTrip = trip
         {
+            //Set Properties
             nav.title = safeTrip.name
             tripNameField.text = safeTrip.name
         }
     }
 
+    //Simple Core Data function to save trip
     @IBAction func save(_ sender: Any)
     {
         var newTrip:Trip?
         
+        //Trip Present
         if let safeTrip = trip
         {
             newTrip = safeTrip
@@ -42,6 +47,7 @@ class TripAddEditViewController: UIViewController, UITextFieldDelegate{
         }
         else
         {
+            //Use failable initilizer to generate new trip
             newTrip = Trip(title: tripNameField.text ?? "")
         }
         
@@ -50,18 +56,21 @@ class TripAddEditViewController: UIViewController, UITextFieldDelegate{
         }
         catch
         {
-            print("Could Not Save Category")
+            print("Could Not Save Trip")
         }
             
-        
+        //Reset trip so that it does try to save the last trip selected.
         trip = nil
         self.navigationController?.popViewController(animated: true)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //Allows keyboard to close on tounch out.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
         tripNameField.resignFirstResponder()
     }
     
+    //Update the navigation title on trip name field change
     @IBAction func changeTripName(_ sender: Any)
     {
         if let text = tripNameField.text

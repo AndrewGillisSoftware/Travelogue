@@ -14,6 +14,7 @@ class LogsViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var trip:Trip?
 
+    //Computed property logs
     var logs:[Log]
     {
         get
@@ -46,11 +47,13 @@ class LogsViewController: UIViewController, UITableViewDelegate, UITableViewData
         return 1
     }
     
+    //Number of logs in the tableview
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return logs.count
     }
     
+    //Fill cells with log data
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = logsTableView.dequeueReusableCell(withIdentifier: "logCell", for: indexPath)
@@ -78,11 +81,7 @@ class LogsViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-     func tableView(_ tableView: UITableView, canEditRowAt indexPath:IndexPath)->Bool
-    {
-        return true
-    }
-    
+    //Delete logs without a warning, since they are not as dangerous as deleting a trip.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath:IndexPath){
         if(editingStyle == .delete)
         {
@@ -104,25 +103,28 @@ class LogsViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    //Force height of cell programatically
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
     
-    //Segue to edit view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        //Where am I going next?
         switch(segue.identifier)
         {
-            //Set Log and tru
+            //Set Trip and context
             case "addLog":
                 guard let vC = segue.destination as? LogAddEditViewController else{return}
                 vC.trip = trip
                 vC.coreDataContext = coreDataContext
-            //Populate Fields on edit log and set trip
+                
+            //Populate Fields on edit log and set trip and context
             case "editLog":
                 guard let vC = segue.destination as? LogAddEditViewController else{return}
                 if let index = logsTableView.indexPathForSelectedRow?.row
                 {
+                    //get log to edit
                     vC.log = logs[index]
                     vC.trip = trip
                     vC.coreDataContext = coreDataContext
