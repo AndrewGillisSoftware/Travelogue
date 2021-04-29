@@ -80,7 +80,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
              didSelectRowAt indexPath: IndexPath) {
         //is the current view in trip edit mode
         if isEdit {
-            performSegue(withIdentifier: "newEditTrip", sender: nil)
+            performSegue(withIdentifier: "editTrip", sender: nil)
         } else {
             performSegue(withIdentifier: "viewTripLogs", sender: nil)
         }
@@ -134,12 +134,24 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         switch(segue.identifier)
         {
-            case "newEditTrip":
+            case "newTrip":
+                guard let vC = segue.destination as? TripAddEditViewController else{return}
+                
+                vC.coreDataContext = coreDataContext
+                
+                isEdit = false
+                EditNavButton.title = "Edit"
+                
+            case "editTrip":
                 guard let vC = segue.destination as? TripAddEditViewController else{return}
                 if  let index = tripsTableView.indexPathForSelectedRow?.row
                 {
@@ -154,6 +166,7 @@ class TripsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                     let trip = trips[index]
                     vC.nav.title = trip.name
                     vC.trip = trip
+                    vC.coreDataContext = coreDataContext
                 }
             default:
                 print("Segue Error")

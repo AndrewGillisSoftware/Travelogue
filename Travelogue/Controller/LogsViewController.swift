@@ -33,7 +33,7 @@ class LogsViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         logsTableView.delegate = self
         // Do any additional setup after loading the view.
-        dateFormatter.dateFormat = "MMM d, yyyy"
+        dateFormatter.dateFormat = "MMMM d, yyyy"
     }
 
     override func viewWillAppear(_ animated: Bool)
@@ -104,6 +104,10 @@ class LogsViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     //Segue to edit view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -113,6 +117,7 @@ class LogsViewController: UIViewController, UITableViewDelegate, UITableViewData
             case "addLog":
                 guard let vC = segue.destination as? LogAddEditViewController else{return}
                 vC.trip = trip
+                vC.coreDataContext = coreDataContext
             //Populate Fields on edit log and set trip
             case "editLog":
                 guard let vC = segue.destination as? LogAddEditViewController else{return}
@@ -120,6 +125,7 @@ class LogsViewController: UIViewController, UITableViewDelegate, UITableViewData
                 {
                     vC.log = logs[index]
                     vC.trip = trip
+                    vC.coreDataContext = coreDataContext
                 }
             default:
                 print("Critical Error")

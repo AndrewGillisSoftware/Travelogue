@@ -43,7 +43,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="updateTripName:" destination="JLm-K6-TQk" eventType="editingDidEnd" id="jjs-hs-mJr"/>
+                                    <action selector="changeTripName:" destination="JLm-K6-TQk" eventType="editingChanged" id="uT1-eq-cEl"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -128,7 +128,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="QO9-5l-58Z">
                                 <connections>
-                                    <segue destination="JLm-K6-TQk" kind="show" identifier="newEditTrip" id="Rve-dQ-7o4"/>
+                                    <segue destination="JLm-K6-TQk" kind="show" identifier="newTrip" id="Rve-dQ-7o4"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Edit" id="kKf-2A-Oy9">
@@ -142,11 +142,12 @@
                         <outlet property="EditNavButton" destination="kKf-2A-Oy9" id="fTV-y6-HIv"/>
                         <outlet property="tripsTableView" destination="o8a-eE-YTt" id="ZbQ-ks-lxg"/>
                         <segue destination="8CT-RO-BVS" kind="show" identifier="viewTripLogs" id="MJm-JD-XYp"/>
+                        <segue destination="JLm-K6-TQk" kind="show" identifier="editTrip" id="fN9-X7-ar6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JUV-4o-7gA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="658" y="50"/>
+            <point key="canvasLocation" x="581" y="50"/>
         </scene>
         <!--Trip Name Logs-->
         <scene sceneID="AtE-c1-f2C">
@@ -268,10 +269,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mPr-nw-lEc">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="My Adventure Text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="mPr-nw-lEc">
                                 <rect key="frame" x="152" y="442.5" width="208" height="127"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -293,7 +293,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="NI6-zk-dOx">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="NI6-zk-dOx">
                                 <rect key="frame" x="20" y="630.5" width="374" height="211.5"/>
                             </imageView>
                         </subviews>
@@ -327,11 +327,29 @@
                     </view>
                     <navigationItem key="navigationItem" id="npH-zv-EVH">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="camera" id="LlD-GJ-SOs"/>
-                            <barButtonItem systemItem="organize" id="uy0-9y-nv5"/>
-                            <barButtonItem systemItem="save" id="LVW-0j-t75"/>
+                            <barButtonItem systemItem="camera" id="LlD-GJ-SOs">
+                                <connections>
+                                    <action selector="takePhoto:" destination="lNE-sY-BUe" id="LSt-eH-Oef"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="organize" id="uy0-9y-nv5">
+                                <connections>
+                                    <action selector="choosePhoto:" destination="lNE-sY-BUe" id="Brs-zh-Izk"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="save" id="LVW-0j-t75">
+                                <connections>
+                                    <action selector="save:" destination="lNE-sY-BUe" id="QIX-DY-9nk"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="logDatePicker" destination="L9i-zV-8CU" id="FEG-GD-wg3"/>
+                        <outlet property="logDiscriptionTextView" destination="mPr-nw-lEc" id="ntH-xw-NHW"/>
+                        <outlet property="logImageView" destination="NI6-zk-dOx" id="DyX-aj-Ucm"/>
+                        <outlet property="logNameField" destination="tUZ-Px-7tS" id="HdX-T4-7XC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hcz-AP-9dV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -340,9 +358,10 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="R2X-ma-oEb"/>
+        <segue reference="fN9-X7-ar6"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Logo" width="1024" height="1024"/>
+        <image name="default" width="1024" height="1024"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -62,11 +62,12 @@ class TripAddEditViewController: UIViewController, UITextFieldDelegate{
         tripNameField.resignFirstResponder()
     }
     
-    @IBAction func updateTripName(_ sender: Any)
+    @IBAction func changeTripName(_ sender: Any)
     {
         if let text = tripNameField.text
         {
             nav.title = text
         }
     }
+    
 }
